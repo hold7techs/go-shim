@@ -1,6 +1,7 @@
-package go_shim
+package shim
 
 import (
+	"io/fs"
 	"log"
 	"os"
 	"path/filepath"
@@ -22,4 +23,27 @@ func MustGetFilePath(path string) string {
 	}
 
 	return absPath
+}
+
+// FindFilePaths 寻找文件dir的目录下有多少md文件
+func FindFilePaths(root string, pattern string) ([]string, error) {
+	// change root
+	if err := os.Chdir(root); err != nil {
+		return nil, err
+	}
+
+	// 通过walk 遍历目录，将所有子目录都找到
+	var paths []string
+	filepath.Walk(root, func(path string, info fs.FileInfo, err error) error {
+		// 将匹配的信息捞出来
+		if match, err := filepath.Match(pattern, info.Name()); err != nil {
+			return err
+		} else if match {
+			paths = append(paths, path)
+		}
+
+		return nil
+	})
+
+	return paths, nil
 }

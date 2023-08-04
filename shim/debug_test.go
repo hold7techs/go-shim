@@ -1,4 +1,4 @@
-package go_shim
+package shim
 
 import (
 	"testing"

@@ -1,4 +1,4 @@
-package go_shim
+package shim
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 // Boom 不应该进入的位置，测试调试环境避免意外情况
 func Boom(remark string) {
-	log.Fatalf("[Boom] - [%s] bad access!", remark)
+	log.Fatalf("[Boom] - [%s]  Met a Boom!!", remark)
 }
 
 // ToJsonString 将变量转成Json类型，主要for debug

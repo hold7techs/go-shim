@@ -1,1 +1,1 @@
-package go_shim
+package shim
