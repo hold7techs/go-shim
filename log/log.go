@@ -4,23 +4,38 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 )
 
-var std = log.New(os.Stderr, "", log.Ldate|log.Ltime|log.Lshortfile)
+var (
+	std          = log.New(os.Stderr, "", log.Ldate|log.Ltime|log.Lshortfile)
+	defaultLevel = InfoLevel // 默认级别
+)
 
-// LogLevel log级别
-type LogLevel int
+func init() {
+	// 基于环境变量，更新
+	if logLevel := os.Getenv("LOG_LEVEL"); logLevel != "" {
+		level, err := strconv.Atoi(logLevel)
+		if err != nil {
+			return
+		}
+		defaultLevel = Level(level)
+	}
+}
+
+// Level log级别
+type Level int
 
 const (
-	TraceLevel LogLevel = iota
+	TraceLevel Level = iota
 	DebugLevel
-	InfoLevel
 	WarnLevel
+	InfoLevel
 	ErrorLevel
 	FatalLevel
 )
 
-var descMap = map[LogLevel]string{
+var descMap = map[Level]string{
 	TraceLevel: "TRACE",
 	DebugLevel: "DEBUG",
 	InfoLevel:  "INFO",
@@ -48,6 +63,16 @@ func Infof(format string, v ...any) {
 	printFormatMessage(InfoLevel, format, v...)
 }
 
+// Warn 错误信息
+func Warn(v ...any) {
+	printMessage(WarnLevel, v)
+}
+
+// Warnf 格式化输出
+func Warnf(format string, v ...any) {
+	printFormatMessage(WarnLevel, format, v...)
+}
+
 // Error 错误信息
 func Error(v ...any) {
 	printMessage(ErrorLevel, v)
@@ -69,10 +94,16 @@ func Fatalf(format string, v ...any) {
 	os.Exit(1)
 }
 
-func printMessage(level LogLevel, v ...any) {
-	std.Output(3, fmt.Sprintf("[%s] %s", descMap[level], v))
+func printMessage(level Level, v []any) {
+	// 仅在log打印日志处调用的等级，大于系统配置等级时候才打印
+	if level >= defaultLevel {
+		std.Output(3, fmt.Sprintf("[%s] %s", descMap[level], v))
+	}
 }
 
-func printFormatMessage(level LogLevel, format string, v ...any) {
-	std.Output(3, fmt.Sprintf("[%s] %s", descMap[level], fmt.Sprintf(format, v...)))
+func printFormatMessage(level Level, format string, v ...any) {
+	// 仅在log打印日志处调用的等级，大于系统配置等级时候才打印
+	if level >= defaultLevel {
+		std.Output(3, fmt.Sprintf("[%s] %s", descMap[level], fmt.Sprintf(format, v...)))
+	}
 }

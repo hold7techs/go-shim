@@ -27,6 +27,15 @@ func MustGetFilePath(path string) string {
 
 // FindFilePaths 寻找文件dir的目录下有多少md文件
 func FindFilePaths(root string, pattern string) ([]string, error) {
+	// 检测root是否为常规文件
+	stat, err := os.Stat(root)
+	if err != nil {
+		return nil, err
+	}
+	if stat.Mode().IsRegular() {
+		return []string{root}, nil
+	}
+
 	// change root
 	if err := os.Chdir(root); err != nil {
 		return nil, err

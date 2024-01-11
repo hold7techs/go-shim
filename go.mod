@@ -1,6 +1,6 @@
 module github.com/hold7techs/go-shim
 
-go 1.18
+go 1.21
 
 require (
 	github.com/bsm/redislock v0.9.0
@@ -23,6 +23,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/redis/go-redis/v9 v9.0.5 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
+	github.com/sashabaranov/go-openai v1.17.11 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
