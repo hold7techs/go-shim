@@ -1,4 +1,4 @@
-package database
+package mysqlx
 
 import (
 	"encoding/json"

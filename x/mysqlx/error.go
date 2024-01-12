@@ -1,4 +1,4 @@
-package database
+package mysqlx
 
 import (
 	"github.com/pkg/errors"

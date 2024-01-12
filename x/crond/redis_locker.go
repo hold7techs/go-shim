@@ -1,4 +1,4 @@
-package cron
+package crond
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 
 	"github.com/bsm/redislock"
 	"github.com/pkg/errors"
+	"github.com/redis/go-redis/v9"
 )
 
 type rdsLockInfo struct {

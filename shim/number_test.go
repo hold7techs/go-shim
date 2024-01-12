@@ -22,8 +22,8 @@ func TestUniq(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Uniq(tt.args.ids); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Uniq() = %v, want %v", got, tt.want)
+			if got := UniqElems(tt.args.ids); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("UniqElems() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -45,8 +45,8 @@ func TestInSlice(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := InSlice(tt.args.id, tt.args.ids); got != tt.want {
-				t.Errorf("InSlice() = %v, want %v", got, tt.want)
+			if got := InElems(tt.args.id, tt.args.ids); got != tt.want {
+				t.Errorf("InElems() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -73,8 +73,8 @@ func TestPageData(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := PageData(tt.args.data, tt.args.page, tt.args.pageSize); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("PageData() = %v, want %v", got, tt.want)
+			if got := PagingElems(tt.args.data, tt.args.page, tt.args.pageSize); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("PagingElems() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -99,7 +99,7 @@ func TestBatchNumbers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.wantBatches, ShardingNumbers(tt.args.ids, tt.args.size), "ShardingNumbers(%v, %v)", tt.args.ids, tt.args.size)
+			assert.Equalf(t, tt.wantBatches, ShardingElems(tt.args.ids, tt.args.size), "ShardingElems(%v, %v)", tt.args.ids, tt.args.size)
 		})
 	}
 }
@@ -119,7 +119,7 @@ func TestJoinNumbers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.want, JoinNumbers(tt.args.ids, tt.args.sep), "JoinNumbers(%v, %v)", tt.args.ids, tt.args.sep)
+			assert.Equalf(t, tt.want, JoinElems(tt.args.ids, tt.args.sep), "JoinElems(%v, %v)", tt.args.ids, tt.args.sep)
 		})
 	}
 }

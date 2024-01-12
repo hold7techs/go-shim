@@ -2,7 +2,7 @@
 // Source: ./Locker.go
 
 // Package cron is a generated GoMock package.
-package cron
+package crond
 
 import (
 	gomock "github.com/golang/mock/gomock"
