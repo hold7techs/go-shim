@@ -44,6 +44,17 @@ func UniqElems[T comparable](elems []T) []T {
 	return retIDs
 }
 
+// RemoveElems 移除指定元素
+func RemoveElems[T comparable](slice []T, elem T) []T {
+	var result []T
+	for _, v := range slice {
+		if v != elem {
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
 // PagingElems 从elems切片中，按每页size大小，获取page页的数据
 func PagingElems[T interface{}](elems []T, page int, size int) []T {
 	if len(elems) == 0 {
