@@ -4,15 +4,17 @@ go 1.21
 
 require (
 	github.com/alicebob/miniredis/v2 v2.31.1
+	github.com/avast/retry-go/v4 v4.5.1
 	github.com/bsm/redislock v0.9.0
 	github.com/go-co-op/gocron v1.18.0
 	github.com/golang/mock v1.6.0
+	github.com/hold7techs/goval v0.2.0
 	github.com/json-iterator/go v1.1.12
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/sashabaranov/go-openai v1.17.11
 	github.com/shopspring/decimal v1.3.1
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.4
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/driver/mysql v1.4.7
 	gorm.io/gorm v1.24.5

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/hold7techs/go-shim/log"
 	"github.com/hold7techs/go-shim/shim"
+	"github.com/hold7techs/go-shim/shim/log"
 	"github.com/pkg/errors"
 	"github.com/sashabaranov/go-openai"
 )
