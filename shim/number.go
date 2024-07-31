@@ -2,6 +2,7 @@ package shim
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -108,4 +109,13 @@ func JoinElems[T comparable](elems []T, sep string) string {
 		ss = append(ss, fmt.Sprintf("%v", id))
 	}
 	return strings.Join(ss, sep)
+}
+
+// ForceStringToUInt64 强制转成uint64，转失败返回0
+func ForceStringToUInt64(strNum string) uint64 {
+	u, err := strconv.ParseUint(strNum, 10, 64)
+	if err != nil {
+		return 0
+	}
+	return u
 }
