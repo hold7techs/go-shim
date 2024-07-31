@@ -33,11 +33,15 @@ $ tree -L 2 -d
 
 `shim`主要for业务场景简单封装，例如 从字符串、数字切片中
 
+### Shard分片、去重等
+
 - 元素是否存在: `InElems[T comparable](elem T, elems []T) bool`
 - 元素去重: `UniqElems[T comparable](elems []T) []T`
 - 元素分片: `ShardingElems[T comparable](elems []T, batchSize int) (batches [][]T)`
 - 元素分页: `PagingElems[T interface{}](elems []T, page int, size int) []T`
 - 拼接成SQL字符串: `JoinElems[T comparable](elems []T, sep string) string `
+- 摘要签名: `Sha256Signature(secret string, message []byte) string`
+- 寻找匹配的文件: `func FindFilePaths(root string, pattern string) ([]string, error)`
 
 ## x 助手包
 

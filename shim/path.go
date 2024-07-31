@@ -25,7 +25,7 @@ func MustGetFilePath(path string) string {
 	return absPath
 }
 
-// FindFilePaths 寻找文件dir的目录下有多少md文件
+// FindFilePaths 寻找文件dir的目录下有多少pattern匹配的文件
 func FindFilePaths(root string, pattern string) ([]string, error) {
 	// 检测root是否为常规文件
 	stat, err := os.Stat(root)
