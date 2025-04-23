@@ -26,3 +26,12 @@ func TestStdDateTimeStr_GetTime(t *testing.T) {
 		})
 	}
 }
+
+func TestParseGetTime(t *testing.T) {
+	pTime, err := time.Parse(time.RFC3339, "2025-03-03T12:21:32.582Z")
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Logf("parse: %v", pTime.Format(time.DateTime))
+}
