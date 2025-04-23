@@ -25,12 +25,12 @@ func ParseAppConfig(filename string) (*AppConfig, error) {
 	}
 
 	// 解析成结构体
-	cfg := AppConfig{}
+	var cfg *AppConfig
 	if err := yaml.Unmarshal(file, &cfg); err != nil {
 		return nil, errors.Wrap(err, "yaml unmarshal app config got err")
 	}
 
-	return &cfg, nil
+	return cfg, nil
 }
 
 // InitAppConfig 初始AppConfig配置信息

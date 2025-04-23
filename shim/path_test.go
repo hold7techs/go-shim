@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestFindFilePaths(t *testing.T) {
@@ -97,35 +95,5 @@ func TestWalkRoot(t *testing.T) {
 	// 遍历得到的信息
 	for _, filePath := range filePaths {
 		t.Logf("file: %s", filePath)
-	}
-}
-
-func TestFindFilePaths1(t *testing.T) {
-	tmpDir := os.TempDir()
-
-	type args struct {
-		root    string
-		pattern string
-	}
-	tests := []struct {
-		name    string
-		args    args
-		wantErr assert.ErrorAssertionFunc
-	}{
-		{"t1", args{tmpDir, "*"}, assert.NoError},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			paths, err := FindFilePaths(tt.args.root, tt.args.pattern)
-			if !tt.wantErr(t, err, fmt.Sprintf("FindFilePaths(%v, %v)", tt.args.root, tt.args.pattern)) {
-				return
-			}
-
-			t.Logf("count: %d", len(paths))
-
-			for _, path := range paths {
-				t.Logf("got paths: %s", path)
-			}
-		})
 	}
 }

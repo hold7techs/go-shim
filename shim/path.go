@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // MustGetFilePath 如果改路径不存在，则自动创建，若存在，则直接返回对应的路径名
@@ -55,4 +56,18 @@ func FindFilePaths(root string, pattern string) ([]string, error) {
 	})
 
 	return paths, nil
+}
+
+// GetRootPath 根据给定的相对路径返回项目根目录
+func GetRootPath(realpath string) string {
+	// 获取当前文件的绝对路径
+	currentPath, _ := os.Getwd()
+	start := strings.Index(currentPath, realpath)
+	if start == -1 {
+		return currentPath
+	} else if start == 0 {
+		return "/"
+	}
+
+	return currentPath[:start-1]
 }

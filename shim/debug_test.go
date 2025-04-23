@@ -6,6 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestToJsonStringV2(t *testing.T) {
+	type Fav struct {
+		IsOk bool
+	}
+	f := Fav{}
+	t.Logf("%s", ToJsonString(f, false))
+}
+
 func TestToJsonString(t *testing.T) {
 	type Fav struct {
 		Name string

@@ -15,29 +15,34 @@
 ## 目录说明
 
 ```
-$ tree -L 2 -d     
+$ tree -L 2 -d
 .
-├── shim // 业务垫片
-│   ├── goval
-│   ├── grayacc
-│   └── log
-└── x  // 技术垫片
+├── shim    // 一些助手函数
+└── x
     ├── crond
+    ├── goval
+    ├── grayacc
+    ├── log
     ├── mysqlx
     ├── openaix
-    └── redisx
+    ├── redisx
+    └── retryx
 ```
 
-## 示例
+## shim 助手函数
 
-### 函数示例
+`shim`主要for业务场景简单封装，例如 从字符串、数字切片中
 
-`go-shim`主要for业务场景简单封装，例如 从字符串、数字切片中
+### Shard分片、去重等
 
 - 元素是否存在: `InElems[T comparable](elem T, elems []T) bool`
 - 元素去重: `UniqElems[T comparable](elems []T) []T`
 - 元素分片: `ShardingElems[T comparable](elems []T, batchSize int) (batches [][]T)`
 - 元素分页: `PagingElems[T interface{}](elems []T, page int, size int) []T`
 - 拼接成SQL字符串: `JoinElems[T comparable](elems []T, sep string) string `
+- 摘要签名: `Sha256Signature(secret string, message []byte) string`
+- 寻找匹配的文件: `func FindFilePaths(root string, pattern string) ([]string, error)`
 
+## x 助手包
 
+`x`目录文件夹，主要是for业务一些基础组件，比如重试、日志、分布式锁等常规处理
